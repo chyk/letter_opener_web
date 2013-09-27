@@ -11,5 +11,9 @@ module LetterOpenerWeb
     initializer "letter_opener_web.add_delivery_method" do
       ActionMailer::Base.add_delivery_method :letter_opener_web, LetterOpenerWeb::DeliveryMethod, :location => Rails.root.join("tmp", "letter_opener")
     end
+
+    initializer "letter_opener_web.assets.precompile" do |app|
+      app.config.assets.precompile += %w(application.css application.js)
+    end
   end
 end
